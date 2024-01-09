@@ -35,14 +35,13 @@ steps:
     
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish'
   inputs:
     command: publish
-    publishWebProjects: true
+    publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-- task: PublishBuildArtifacts@1
+- task: PublishBuildPipelineArtifact@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'MyTool_LatestBuild'
+    targetPath: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'webapp-artifact'
